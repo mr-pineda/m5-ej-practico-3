@@ -1,5 +1,5 @@
-import { Component } from "react";
-import ServiceList from "./ServiceList";
+import { Component } from 'react';
+import ServiceList from './ServiceList';
 
 interface ServiceListProps {
   services: string[];

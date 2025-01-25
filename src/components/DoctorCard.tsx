@@ -1,4 +1,4 @@
-import type { doctor } from "../types/data";
+import type { doctor } from '../types/data';
 
 const DoctorCard = ({
   doctor,

@@ -1,6 +1,7 @@
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet } from 'react-router';
 const ProtectedRoute = () => {
-  const isAuthenticated = localStorage.getItem("authToken") === "userToken";
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  const token = localStorage.getItem('authToken');
+  const isAuthenticated = token === 'admin' || token === 'doctor';
+  return isAuthenticated ? <Outlet /> : <Navigate to='/' />;
 };
 export default ProtectedRoute;

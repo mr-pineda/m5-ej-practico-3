@@ -4,12 +4,12 @@ import {
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
-} from "@headlessui/react";
-import { useEffect, useRef, useState } from "react";
-import { doctor } from "../types/data";
-import React from "react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { CheckIcon } from "@heroicons/react/20/solid";
+} from '@headlessui/react';
+import { useEffect, useRef, useState } from 'react';
+import { doctor } from '../types/data';
+import React from 'react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { CheckIcon } from '@heroicons/react/20/solid';
 
 interface AppointmentFormProps {
   doctorsData: doctor[];
@@ -21,9 +21,9 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
   const [selected, setSelected] = useState(props.doctorsData[0]);
   const [hour, setHour] = useState(props.hours[0]);
   const [day, setDay] = useState(props.days[0]);
-  const [doctorQuery, setDoctorQuery] = useState("");
-  const [dayQuery, setDayQuery] = useState("");
-  const [hourQuery, setHourQuery] = useState("");
+  const [doctorQuery, setDoctorQuery] = useState('');
+  const [dayQuery, setDayQuery] = useState('');
+  const [hourQuery, setHourQuery] = useState('');
   const [doctorHover, setDoctorHover] = useState(false);
   const [hourHover, setHourHover] = useState(false);
   const [dayHover, setDayHover] = useState(false);
@@ -31,21 +31,21 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
   const { doctorsData, hours, days } = props;
 
   const filteredDoctor =
-    doctorQuery === ""
+    doctorQuery === ''
       ? doctorsData
       : doctorsData.filter((doctor) => {
           return doctor.name.toLowerCase().includes(doctorQuery.toLowerCase());
         });
 
   const filteredDay =
-    dayQuery === ""
+    dayQuery === ''
       ? days
       : days.filter((day) => {
           return day.toLowerCase().includes(dayQuery.toLowerCase());
         });
 
   const filteredHour =
-    hourQuery === ""
+    hourQuery === ''
       ? hours
       : hours.filter((hour) => {
           return hour.toLowerCase().includes(hourQuery.toLowerCase());
@@ -56,7 +56,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
   const dayInputRef = useRef<HTMLInputElement>(null);
 
   const handleDoctorQueryChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDoctorQuery(event.target.value);
   };
@@ -66,7 +66,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
   };
 
   const handleHourQueryChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setHourQuery(event.target.value);
   };
@@ -102,24 +102,24 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
 
     doctorInputRef.current.focus();
 
-    doctorInputRef.current.addEventListener("mouseenter", () => {
+    doctorInputRef.current.addEventListener('mouseenter', () => {
       doctorMouseEnter();
     });
-    doctorInputRef.current.addEventListener("mouseleave", () => {
+    doctorInputRef.current.addEventListener('mouseleave', () => {
       doctorMouseLeave();
     });
 
-    hourInputRef.current.addEventListener("mouseenter", () => {
+    hourInputRef.current.addEventListener('mouseenter', () => {
       hourMouseEnter();
     });
-    hourInputRef.current.addEventListener("mouseleave", () => {
+    hourInputRef.current.addEventListener('mouseleave', () => {
       hourMouseLeave();
     });
 
-    dayInputRef.current.addEventListener("mouseenter", () => {
+    dayInputRef.current.addEventListener('mouseenter', () => {
       dayMouseEnter();
     });
-    dayInputRef.current.addEventListener("mouseleave", () => {
+    dayInputRef.current.addEventListener('mouseleave', () => {
       dayMouseLeave();
     });
 
@@ -131,63 +131,63 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
       )
         return;
 
-      doctorInputRef.current.addEventListener("mouseenter", () => {
+      doctorInputRef.current.addEventListener('mouseenter', () => {
         doctorMouseEnter();
       });
-      doctorInputRef.current.addEventListener("mouseleave", () => {
+      doctorInputRef.current.addEventListener('mouseleave', () => {
         doctorMouseLeave();
       });
 
-      hourInputRef.current.addEventListener("mouseenter", () => {
+      hourInputRef.current.addEventListener('mouseenter', () => {
         hourMouseEnter();
       });
-      hourInputRef.current.addEventListener("mouseleave", () => {
+      hourInputRef.current.addEventListener('mouseleave', () => {
         hourMouseLeave();
       });
 
-      dayInputRef.current.addEventListener("mouseenter", () => {
+      dayInputRef.current.addEventListener('mouseenter', () => {
         dayMouseEnter();
       });
-      dayInputRef.current.addEventListener("mouseleave", () => {
+      dayInputRef.current.addEventListener('mouseleave', () => {
         dayMouseLeave();
       });
     };
   }, []);
 
   return (
-    <div className="w-full bg-white px-28 py-16">
-      <div className="mb-5">
+    <div className='w-full bg-white px-28 py-16'>
+      <div className='mb-5'>
         <h1>Doctor</h1>
         <Combobox
           value={selected}
           onChange={(value) => setSelected(value as doctor)}
-          onClose={() => setDoctorQuery("")}
+          onClose={() => setDoctorQuery('')}
         >
-          <div className="relative">
+          <div className='relative'>
             <ComboboxInput
-              className={`w-full rounded-lg border-2 border-black py-1.5 pl-3 pr-8 text-sm/6 text-black focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 ${doctorHover ? "bg-sky-100" : "bg-white/50"}`}
+              className={`w-full rounded-lg border-2 border-black py-1.5 pl-3 pr-8 text-sm/6 text-black focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 ${doctorHover ? 'bg-sky-100' : 'bg-white/50'}`}
               ref={doctorInputRef}
               displayValue={(doctor: doctor) => doctor?.name}
               onChange={(event) => handleDoctorQueryChange(event)}
             />
-            <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
-              <ChevronDownIcon className="size-4 fill-black" />
+            <ComboboxButton className='group absolute inset-y-0 right-0 px-2.5'>
+              <ChevronDownIcon className='size-4 fill-black' />
             </ComboboxButton>
           </div>
 
           <ComboboxOptions
-            anchor="bottom"
+            anchor='bottom'
             transition
-            className="w-[var(--input-width)] rounded-xl border border-white/5 bg-white p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] empty:invisible data-[leave]:data-[closed]:opacity-0"
+            className='w-[var(--input-width)] rounded-xl border border-white/5 bg-white p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] empty:invisible data-[leave]:data-[closed]:opacity-0'
           >
             {filteredDoctor.map((doctor, idx) => (
               <ComboboxOption
                 key={idx}
                 value={doctor}
-                className="group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10"
+                className='group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10'
               >
-                <CheckIcon className="invisible size-4 fill-black group-data-[selected]:visible" />
-                <div className="text-sm/6 text-black">
+                <CheckIcon className='invisible size-4 fill-black group-data-[selected]:visible' />
+                <div className='text-sm/6 text-black'>
                   {doctor.name} --- {doctor.specialty}
                 </div>
               </ComboboxOption>
@@ -195,38 +195,38 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
           </ComboboxOptions>
         </Combobox>
       </div>
-      <div className="mb-5 flex flex-row">
-        <div className="mr-2">
+      <div className='mb-5 flex flex-row'>
+        <div className='mr-2'>
           <h1>Hora</h1>
           <Combobox
             value={hour}
             onChange={(value) => setHour(value as string)}
-            onClose={() => setHourQuery("")}
+            onClose={() => setHourQuery('')}
           >
-            <div className="relative">
+            <div className='relative'>
               <ComboboxInput
-                className={`w-full rounded-lg border-2 border-black py-1.5 pl-3 pr-8 text-sm/6 text-black focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 ${hourHover ? "bg-sky-100" : "bg-white/50"}`}
+                className={`w-full rounded-lg border-2 border-black py-1.5 pl-3 pr-8 text-sm/6 text-black focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 ${hourHover ? 'bg-sky-100' : 'bg-white/50'}`}
                 ref={hourInputRef}
                 displayValue={(currentHour: string) => currentHour}
                 onChange={(event) => handleHourQueryChange(event)}
               />
-              <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
-                <ChevronDownIcon className="size-4 fill-black" />
+              <ComboboxButton className='group absolute inset-y-0 right-0 px-2.5'>
+                <ChevronDownIcon className='size-4 fill-black' />
               </ComboboxButton>
             </div>
 
             <ComboboxOptions
-              anchor="bottom"
+              anchor='bottom'
               transition
-              className="w-[var(--input-width)] rounded-xl border border-white/5 bg-white p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] empty:invisible data-[leave]:data-[closed]:opacity-0"
+              className='w-[var(--input-width)] rounded-xl border border-white/5 bg-white p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] empty:invisible data-[leave]:data-[closed]:opacity-0'
             >
               {filteredHour.map((hour, idx) => (
                 <ComboboxOption
                   key={idx}
                   value={hour}
-                  className="group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10"
+                  className='group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10'
                 >
-                  <div className="text-sm/6 text-black">{hour}</div>
+                  <div className='text-sm/6 text-black'>{hour}</div>
                 </ComboboxOption>
               ))}
             </ComboboxOptions>
@@ -237,33 +237,33 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
           <Combobox
             value={day}
             onChange={(value) => setDay(value as string)}
-            onClose={() => setDayQuery("")}
+            onClose={() => setDayQuery('')}
           >
-            <div className="relative">
+            <div className='relative'>
               <ComboboxInput
-                className={`w-full rounded-lg border-2 border-black py-1.5 pl-3 pr-8 text-sm/6 text-black focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 ${dayHover ? "bg-sky-100" : "bg-white/50"}`}
+                className={`w-full rounded-lg border-2 border-black py-1.5 pl-3 pr-8 text-sm/6 text-black focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 ${dayHover ? 'bg-sky-100' : 'bg-white/50'}`}
                 ref={dayInputRef}
                 displayValue={(currentDay: string) => currentDay}
                 onChange={(event) => handleDayQueryChange(event)}
               />
-              <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
-                <ChevronDownIcon className="size-4 fill-black" />
+              <ComboboxButton className='group absolute inset-y-0 right-0 px-2.5'>
+                <ChevronDownIcon className='size-4 fill-black' />
               </ComboboxButton>
             </div>
 
             <ComboboxOptions
-              anchor="bottom"
+              anchor='bottom'
               transition
-              className="w-[var(--input-width)] rounded-xl border border-white/5 bg-white p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] empty:invisible data-[leave]:data-[closed]:opacity-0"
+              className='w-[var(--input-width)] rounded-xl border border-white/5 bg-white p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] empty:invisible data-[leave]:data-[closed]:opacity-0'
             >
               {filteredDay.map((day, idx) => (
                 <ComboboxOption
                   key={idx}
                   value={day}
-                  className="group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10"
+                  className='group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10'
                 >
-                  <CheckIcon className="invisible size-4 fill-black" />
-                  <div className="text-sm/6 text-black">{day}</div>
+                  <CheckIcon className='invisible size-4 fill-black' />
+                  <div className='text-sm/6 text-black'>{day}</div>
                 </ComboboxOption>
               ))}
             </ComboboxOptions>
@@ -271,12 +271,12 @@ const AppointmentForm: React.FC<AppointmentFormProps> = (props) => {
         </div>
       </div>
       <button
-        className="rounded-lg bg-sky-700 p-3 font-bold text-white"
+        className='rounded-lg bg-sky-700 p-3 font-bold text-white'
         onClick={() =>
           console.log(
             `Reserva de Hora con Doctor: ${selected?.name}
         Día: ${day}
-        Hora: ${hour}`,
+        Hora: ${hour}`
           )
         }
       >
