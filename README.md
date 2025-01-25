@@ -32,16 +32,16 @@ Trabajo práctico para desarrollar una página web de hospital que debe contener
 
 1. Uso de useState para la Gestión de Estado (1.5 puntos)
 
-   - [ ] Implementa el Hook useState para gestionar el estado en los componentes del sistema, como:
+   - [x] Implementa el Hook useState para gestionar el estado en los componentes del sistema, como:
      - [x] El manejo de formularios de pacientes o citas médicas.
-     - [ ] Almacenar temporalmente la información ingresada por el usuario hasta que sea enviada o actualizada en la base de datos.
+     - [x] Almacenar temporalmente la información ingresada por el usuario hasta que sea enviada o actualizada en la base de datos.
 
 2. Uso de useEffect para la Gestión de Efectos Secundarios (1.5
    puntos)
 
-   - [ ] Utiliza useEffect para manejar efectos secundarios como:
+   - [x] Utiliza useEffect para manejar efectos secundarios como:
      - [x] Realizar peticiones a la API para obtener los datos del sistema del hospital (doctores, pacientes).
-     - [ ] Controlar cuándo y cómo se deben ejecutar ciertos procesos, como la actualización automática de datos.
+     - [x] Controlar cuándo y cómo se deben ejecutar ciertos procesos, como la actualización automática de datos.
 
 3. Construcción de un Hook Personalizado (1.5 puntos)
 
