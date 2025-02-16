@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from 'react';
 import SortedServiceList from '../components/SortedServiceList';
-import { getDoctorData } from '../utils/api';
+import { useDoctors } from '../utils/api';
 
 export const generalServices = createContext([
   'Medicina General',
@@ -13,16 +13,13 @@ export const generalServices = createContext([
 ]);
 
 const Home = () => {
-  const [data, setData] = useState<string[]>([]);
+  const doctors = useDoctors();
+  const [serviceList, setServiceList] = useState<string[]>([]);
   useEffect(() => {
     // Simular carga inicial de datos
-    const fetchData = async () => {
-      const doctors = await getDoctorData();
-      console.log(doctors);
-      setData(doctors.flatMap((doctor) => doctor.services));
-    };
-    fetchData();
-  }, []);
+    if (doctors.length === 0) return;
+    setServiceList(doctors.flatMap((doctor) => doctor.services));
+  }, [doctors]);
   return (
     <>
       <div className='w-full bg-sky-200 px-28 py-16'>
@@ -42,7 +39,7 @@ const Home = () => {
         <h1 className='my-5 text-center text-3xl font-bold'>
           Nuestros Servicios
         </h1>
-        <SortedServiceList services={data} />
+        <SortedServiceList services={serviceList} />
       </div>
     </>
   );

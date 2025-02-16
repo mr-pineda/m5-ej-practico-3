@@ -1,20 +1,12 @@
 import { useEffect, useState } from 'react';
 import DoctorCard from '../components/DoctorCard';
 import { doctor } from '../types/data';
-import { getDoctorData } from '../utils/api';
+import { useDoctors } from '../utils/api';
 
 const About = () => {
-  const [data, setData] = useState<doctor[]>([]);
+  const data = useDoctors();
   const [currentDoctor, setCurrentDoctor] = useState<doctor | null>(null);
   const [services, setServices] = useState<string>('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const doctors = await getDoctorData();
-      setData(doctors);
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (currentDoctor !== null) {

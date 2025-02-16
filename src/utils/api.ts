@@ -1,19 +1,25 @@
 import axios from 'axios';
 import { doctor, user } from '../types/data';
+import { useEffect, useState } from 'react';
 
 const api = axios.create({
   timeout: 1000,
 });
 
-export const getDoctorData = async () => {
-  try {
-    const res = await api.get<doctor[]>('/data/doctors.json');
-    return res.data;
-  } catch (error) {
-    // If status is out of range of 2xx axios will throw an error
-    console.error('ERROR:', error);
-    return [];
-  }
+// Custom hook para obtener listado de doctores
+export const useDoctors = () => {
+  const [doctors, setDoctors] = useState<doctor[]>([]);
+  useEffect(() => {
+    api
+      .get<doctor[]>('/data/doctors.json')
+      .then((res) => {
+        setDoctors(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+  return doctors;
 };
 
 export const login = async (user: string, password: string) => {

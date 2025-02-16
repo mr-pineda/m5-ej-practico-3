@@ -45,8 +45,8 @@ Trabajo práctico para desarrollar una página web de hospital que debe contener
 
 3. Construcción de un Hook Personalizado (1.5 puntos)
 
-   - [ ] Crea un Hook personalizado para resolver una funcionalidad recurrente en la aplicación. Algunas ideas incluyen:
-     - [ ] Un Hook que maneje el formulario de registro de doctores y pacientes, validando los datos y devolviendo errores si es necesario.
+   - [x] Crea un Hook personalizado para resolver una funcionalidad recurrente en la aplicación. Algunas ideas incluyen:
+     - [x] Un Hook que maneje el formulario de registro de doctores y pacientes, validando los datos y devolviendo errores si es necesario.
      - [ ] Un Hook para gestionar la autenticación del usuario, verificando si el usuario está autenticado o no.
 
 4. Manejo de Errores en la Aplicación (1.5 puntos)
@@ -57,5 +57,5 @@ Trabajo práctico para desarrollar una página web de hospital que debe contener
 
 5. Aplicación Correcta de las Reglas de los Hooks (1 punto)
    - [ ] Asegúrate de seguir correctamente las reglas de los Hooks, evitando:
-     - [ ] Llamar Hooks de manera condicional o dentro de bucles.
+     - [x] Llamar Hooks de manera condicional o dentro de bucles.
      - [ ] Asegurarte de que los Hooks se llamen en el nivel superior del componente y respeten las mejores prácticas de ReactJS.

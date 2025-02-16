@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { getDoctorData } from '../utils/api';
+import { useDoctors } from '../utils/api';
 import { doctor } from '../types/data';
 import {
   Combobox,
@@ -35,7 +35,7 @@ const hours = [
 const days = ['Lunes', 'Martes', 'Míercoles', 'Jueves', 'Viernes'];
 
 const Appointment = () => {
-  const [doctorsData, setDoctorsData] = useState<doctor[]>([]); //Estado para los datos de los Doctores
+  const doctorsData = useDoctors();
   const [currentDoctor, setCurrentDoctor] = useState<doctor | null>(null);
   const [hour, setHour] = useState(hours[0]);
   const [day, setDay] = useState(days[0]);
@@ -47,15 +47,9 @@ const Appointment = () => {
   const [dayHover, setDayHover] = useState(false);
 
   useEffect(() => {
-    const fetchDoctorsData = async () => {
-      const data = await getDoctorData(); //Llama a la función de la API simulada
-      if (data.length === 0) return; //Si no hay datos, no hace nada
-      setDoctorsData(data); //Actualiza el estado con los datos obtenidos
-      setCurrentDoctor(data[0]); //Selecciona el primer doctor por defecto
-    };
-
-    fetchDoctorsData(); //Ejecuta la función al montar el componente
-  }, []); // El userEffetc se ejecuta solo una vez cuando el componente se monta
+    if (doctorsData.length === 0) return; //Si no hay datos, no hace nada
+    setCurrentDoctor(doctorsData[0]); //Selecciona el primer doctor por defecto
+  }, [doctorsData]); // El userEffetc se ejecuta solo una vez cuando el componente se monta
 
   const filteredDoctor =
     doctorQuery === ''
