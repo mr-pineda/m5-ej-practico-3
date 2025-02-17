@@ -18,7 +18,7 @@ export const useDoctors = () => {
       .catch((err) => {
         console.error(err);
       });
-  });
+  }, []); // Se ejecuta una única vez
   return doctors;
 };
 
